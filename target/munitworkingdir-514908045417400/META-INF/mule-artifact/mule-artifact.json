@@ -1,0 +1,41 @@
+{
+  "configs": [
+    "global.xml",
+    "implementations/get-covid-reports-by-nationalID.xml",
+    "implementations/healthCheck.xml",
+    "implementations/update-covid-Case.xml",
+    "implementations/register-covid-Case.xml",
+    "Global-Error-Handler.xml",
+    "implementations/get-covid-Reports.xml",
+    "uhub.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:uhub-saii:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.4.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "application-types.xml",
+        "dev.yaml",
+        "Global-Error-Handler.xml",
+        "global.xml",
+        "implementations/get-covid-reports-by-nationalID.xml",
+        "implementations/get-covid-Reports.xml",
+        "implementations/healthCheck.xml",
+        "implementations/register-covid-Case.xml",
+        "implementations/update-covid-Case.xml",
+        "local.properties",
+        "log4j2.xml",
+        "uhub.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

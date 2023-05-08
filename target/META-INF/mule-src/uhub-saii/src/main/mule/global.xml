@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b0626760-f33b-4f1d-8561-08f30378191c" >
+		<http:listener-connection host="${secure::http.host}" port="${secure::http.port}" />
+	</http:listener-config>
+	<apikit:config outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" doc:name="Router" doc:id="e4d23b69-c372-42ad-a849-d52831850482" name="uhub-config" api="resource::cf381452-d668-4a50-8633-4691bdeb43b6:uhub:1.0.2:raml:zip:uhub.raml" />
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="16c19b1a-5f02-4dc4-9143-f3224be50408" >
+		<db:my-sql-connection host="${secure::db.host}" port="${secure::db.port}" user="${secure::db.username}" password="${secure::db.password}" database="${secure::db.database}" />
+	</db:config>
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="b8df3fc5-9c48-4842-b581-eb27d2c60659" file="${env}.yaml" key="${secure.key}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="e031856a-daa4-4947-b5ad-108da8ed453f" file="dev.yaml" />
+	<global-property doc:name="Global Property" doc:id="ecac334e-787a-4b7f-b648-8cbc17b097f7" name="env" value="dev" />
+	<global-property doc:name="Global Property" doc:id="7d8957a0-d377-400a-b9da-d807a357a10c" name="secure.key" value="sai" />
+</mule>

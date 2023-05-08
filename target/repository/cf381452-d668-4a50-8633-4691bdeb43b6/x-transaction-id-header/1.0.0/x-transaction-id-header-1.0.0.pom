@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cf381452-d668-4a50-8633-4691bdeb43b6</groupId>
+  <artifactId>x-transaction-id-header</artifactId>
+  <version>1.0.0</version>
+  <name>x-transaction-id-header</name>
+  <properties>
+    <classifier>raml-fragment</classifier>
+    <main>x-transaction-id-header.raml</main>
+    <status>development</status>
+    <originalFormatVersion>1.0</originalFormatVersion>
+    <apiVersion>v1</apiVersion>
+    <projectId>7661a4e7-bd8a-41fa-a729-a4c615c40204</projectId>
+    <branchId>master</branchId>
+    <commitId>dcb08669e1d3be7012b03c37483f5652a3389c36</commitId>
+    <keywords/>
+    <type>raml-fragment</type>
+    <mainFile>x-transaction-id-header.raml</mainFile>
+  </properties>
+  <repositories>
+    <repository>
+      <id>anypoint-exchange</id>
+      <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+    </repository>
+  </repositories>
+</project>
