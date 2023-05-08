@@ -1,0 +1,266 @@
+{
+  "version": "1.2.0",
+  "artifactCoordinates": {
+    "groupId": "com.mycompany",
+    "artifactId": "uhub-saii",
+    "version": "1.0.0-SNAPSHOT",
+    "type": "jar",
+    "classifier": "mule-application"
+  },
+  "dependencies": [
+    {
+      "artifactCoordinates": {
+        "groupId": "org.mule.connectors",
+        "artifactId": "mule-http-connector",
+        "version": "1.6.0",
+        "type": "jar",
+        "classifier": "mule-plugin"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/org/mule/connectors/mule-http-connector/1.6.0/mule-http-connector-1.6.0-mule-plugin.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.mule.connectors",
+        "artifactId": "mule-sockets-connector",
+        "version": "1.2.2",
+        "type": "jar",
+        "classifier": "mule-plugin"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/org/mule/connectors/mule-sockets-connector/1.2.2/mule-sockets-connector-1.2.2-mule-plugin.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.mule.modules",
+        "artifactId": "mule-apikit-module",
+        "version": "1.5.11",
+        "type": "jar",
+        "classifier": "mule-plugin"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/org/mule/modules/mule-apikit-module/1.5.11/mule-apikit-module-1.5.11-mule-plugin.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.mule.connectors",
+        "artifactId": "mule-db-connector",
+        "version": "1.12.1",
+        "type": "jar",
+        "classifier": "mule-plugin"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/org/mule/connectors/mule-db-connector/1.12.1/mule-db-connector-1.12.1-mule-plugin.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "mysql",
+        "artifactId": "mysql-connector-java",
+        "version": "5.1.48",
+        "type": "jar"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/mysql/mysql-connector-java/5.1.48/mysql-connector-java-5.1.48.jar",
+      "isShared": true,
+      "packages": [
+        "com.mysql.fabric",
+        "com.mysql.fabric.hibernate",
+        "com.mysql.fabric.jdbc",
+        "com.mysql.fabric.proto.xmlrpc",
+        "com.mysql.fabric.xmlrpc",
+        "com.mysql.fabric.xmlrpc.base",
+        "com.mysql.fabric.xmlrpc.exceptions",
+        "com.mysql.jdbc",
+        "com.mysql.jdbc.authentication",
+        "com.mysql.jdbc.exceptions",
+        "com.mysql.jdbc.exceptions.jdbc4",
+        "com.mysql.jdbc.integration.c3p0",
+        "com.mysql.jdbc.integration.jboss",
+        "com.mysql.jdbc.interceptors",
+        "com.mysql.jdbc.jdbc2.optional",
+        "com.mysql.jdbc.jmx",
+        "com.mysql.jdbc.log",
+        "com.mysql.jdbc.profiler",
+        "com.mysql.jdbc.util",
+        "org.gjt.mm.mysql"
+      ],
+      "resources": [
+        "META-INF/INDEX.LIST",
+        "META-INF/MANIFEST.MF",
+        "META-INF/services/java.sql.Driver",
+        "com/mysql/jdbc/Charsets.properties",
+        "com/mysql/jdbc/LocalizedErrorMessages.properties",
+        "com/mysql/jdbc/TimeZoneMapping.properties",
+        "com/mysql/jdbc/configs/3-0-Compat.properties",
+        "com/mysql/jdbc/configs/5-0-Compat.properties",
+        "com/mysql/jdbc/configs/clusterBase.properties",
+        "com/mysql/jdbc/configs/coldFusion.properties",
+        "com/mysql/jdbc/configs/fullDebug.properties",
+        "com/mysql/jdbc/configs/maxPerformance.properties",
+        "com/mysql/jdbc/configs/solarisMaxPerformance.properties"
+      ]
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "cf381452-d668-4a50-8633-4691bdeb43b6",
+        "artifactId": "uhub",
+        "version": "1.0.2",
+        "type": "zip",
+        "classifier": "raml"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/cf381452-d668-4a50-8633-4691bdeb43b6/uhub/1.0.2/uhub-1.0.2-raml.zip"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "cf381452-d668-4a50-8633-4691bdeb43b6",
+        "artifactId": "x-correlation-id-header",
+        "version": "1.0.0",
+        "type": "zip",
+        "classifier": "raml-fragment"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/cf381452-d668-4a50-8633-4691bdeb43b6/x-correlation-id-header/1.0.0/x-correlation-id-header-1.0.0-raml-fragment.zip"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "cf381452-d668-4a50-8633-4691bdeb43b6",
+        "artifactId": "x-transaction-id-header",
+        "version": "1.0.0",
+        "type": "zip",
+        "classifier": "raml-fragment"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/cf381452-d668-4a50-8633-4691bdeb43b6/x-transaction-id-header/1.0.0/x-transaction-id-header-1.0.0-raml-fragment.zip"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "cf381452-d668-4a50-8633-4691bdeb43b6",
+        "artifactId": "uho-common-datatypes-fragments",
+        "version": "1.0.0",
+        "type": "zip",
+        "classifier": "raml-fragment"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/cf381452-d668-4a50-8633-4691bdeb43b6/uho-common-datatypes-fragments/1.0.0/uho-common-datatypes-fragments-1.0.0-raml-fragment.zip"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.mulesoft.modules",
+        "artifactId": "mule-secure-configuration-property-module",
+        "version": "1.2.5",
+        "type": "jar",
+        "classifier": "mule-plugin"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/com/mulesoft/modules/mule-secure-configuration-property-module/1.2.5/mule-secure-configuration-property-module-1.2.5-mule-plugin.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.mulesoft.munit",
+        "artifactId": "munit-runner",
+        "version": "2.3.9",
+        "type": "jar",
+        "classifier": "mule-plugin"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/com/mulesoft/munit/munit-runner/2.3.9/munit-runner-2.3.9-mule-plugin.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "com.mulesoft.munit",
+        "artifactId": "munit-tools",
+        "version": "2.3.9",
+        "type": "jar",
+        "classifier": "mule-plugin"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/com/mulesoft/munit/munit-tools/2.3.9/munit-tools-2.3.9-mule-plugin.jar"
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.mule.weave",
+        "artifactId": "assertions",
+        "version": "1.0.2",
+        "type": "jar"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/org/mule/weave/assertions/1.0.2/assertions-1.0.2.jar",
+      "resources": [
+        "META-INF/MANIFEST.MF",
+        "META-INF/maven/org.mule.weave/assertions/pom-default.xml",
+        "META-INF/maven/org.mule.weave/assertions/pom.properties",
+        "dw/test/Asserts.dwl",
+        "dw/test/internal/Utils.dwl"
+      ]
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.mule.weave",
+        "artifactId": "wlang",
+        "version": "2.2.2",
+        "type": "jar"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/org/mule/weave/wlang/2.2.2/wlang-2.2.2.jar",
+      "resources": [
+        "META-INF/MANIFEST.MF",
+        "META-INF/maven/org.mule.weave/wlang/pom-default.xml",
+        "META-INF/maven/org.mule.weave/wlang/pom.properties",
+        "META-INF/native-image/resource-config.json",
+        "dw/Core.dwl",
+        "dw/Crypto.dwl",
+        "dw/Runtime.dwl",
+        "dw/System.dwl",
+        "dw/core/Arrays.dwl",
+        "dw/core/Binaries.dwl",
+        "dw/core/Numbers.dwl",
+        "dw/core/Objects.dwl",
+        "dw/core/Strings.dwl",
+        "dw/core/URL.dwl",
+        "dw/extension/DataFormat.dwl",
+        "dw/module/Multipart.dwl",
+        "dw/util/Diff.dwl",
+        "dw/util/Timer.dwl",
+        "dw/util/Tree.dwl",
+        "dw/util/Values.dwl"
+      ]
+    },
+    {
+      "artifactCoordinates": {
+        "groupId": "org.scala-lang",
+        "artifactId": "scala-library",
+        "version": "2.12.7",
+        "type": "jar"
+      },
+      "uri": "file:/C:/Users/ADMIN/.m2/repository/org/scala-lang/scala-library/2.12.7/scala-library-2.12.7.jar",
+      "packages": [
+        "scala",
+        "scala.annotation",
+        "scala.annotation.meta",
+        "scala.annotation.unchecked",
+        "scala.beans",
+        "scala.collection",
+        "scala.collection.concurrent",
+        "scala.collection.convert",
+        "scala.collection.generic",
+        "scala.collection.immutable",
+        "scala.collection.mutable",
+        "scala.collection.parallel",
+        "scala.collection.parallel.immutable",
+        "scala.collection.parallel.mutable",
+        "scala.collection.script",
+        "scala.compat",
+        "scala.concurrent",
+        "scala.concurrent.duration",
+        "scala.concurrent.forkjoin",
+        "scala.concurrent.impl",
+        "scala.io",
+        "scala.math",
+        "scala.ref",
+        "scala.reflect",
+        "scala.reflect.macros.internal",
+        "scala.runtime",
+        "scala.runtime.java8",
+        "scala.sys",
+        "scala.sys.process",
+        "scala.text",
+        "scala.util",
+        "scala.util.control",
+        "scala.util.hashing",
+        "scala.util.matching"
+      ],
+      "resources": [
+        "META-INF/MANIFEST.MF",
+        "library.properties",
+        "rootdoc.txt"
+      ]
+    }
+  ]
+}

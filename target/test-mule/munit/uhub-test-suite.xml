@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="uhub-test-suite.xml" />
+	<munit:test name="APIKIT:BAD_REQUEST" doc:id="0741dd6e-b5de-4617-ae57-3c6f683cfd94" description="Test" expectedErrorType="APIKIT:BAD_REQUEST">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="dd696057-22bc-421f-afb0-d3dd224443b8" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="1797e23f-5b0d-40a8-aa29-8b039ce57e7d" name="uhub-main"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="APIKIT:NOT_ACCEPTABLE" doc:id="b8ecb4b9-5f50-42a6-ab3f-4c3831280286" description="Test" expectedErrorType="APIKIT:NOT_ACCEPTABLE" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="e671c4e5-9568-4a2f-8522-5b1a07e3ecb1" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="8f1a6cee-cc0a-463e-8cd7-cf3e09878e57" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="APIKIT:METHOD_NOT_ALLOWED" doc:id="88a3e398-761c-4de0-9316-d5ca766dcfc2" description="Test" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="802e40ca-1ea7-4e7b-a379-f0c9654e48c4" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="8d6d0b2a-3cb0-4390-b91d-590503091fa5" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="bdddba8f-5a83-452b-8bef-ea5b404c4261" actual="#[vars.statusCode]" expected="400"/>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="56e5fe9b-1d2a-4d10-bd73-627bf976a0be" actual="#[vars.errorDescription]" expected='Required query parameter state not specified'/>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="45e3f8ff-78f7-4bf4-8d28-eb7c834230eb" actual="#[vars.errorMessage]" expected="Bad Request"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="APIKIT:NOT_FOUND" doc:id="024de36f-5b03-4409-9216-d8ecc98fe905" description="Test" expectedErrorType="APIKIT:NOT_FOUND" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="61f5695c-6830-487b-a730-937ea4acf8e6" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="e6b1604c-0d96-4e3f-bed3-ecb231c6a12e" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="HTTP:FORBIDDEN" doc:id="4269cb16-bc43-498e-9845-56c09e6afcf5" description="Test" expectedErrorType="HTTP:FORBIDDEN" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="99cd1267-d532-4a4a-931b-aca66b1b8aca" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:FORBIDDEN" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="5e986dc7-fce0-4f03-a877-e76d52b6984e" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="HTTP:CLIENT_SECURITY" doc:id="e48f0b85-b65f-4f9d-8f3f-956cf383bc34" description="Test" expectedErrorType="HTTP:CLIENT_SECURITY" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="6baa420f-ecf8-4551-bcbb-8d962683a683" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:CLIENT_SECURITY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="3a63d384-019b-451e-98fe-aa861f759c0b" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="130a4f95-32b7-4c55-93c1-3e08c4dc52b2" is="#[MunitTools::equalTo(401)]" expression="#[vars.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:CONNECTIVITY" doc:id="c35f5b73-e4fd-4f5b-af38-0131ff1952a6" description="Test" expectedErrorType="HTTP:CONNECTIVITY" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="b9c2f24c-7cf9-4675-aab2-5577cc04a3e7" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:CONNECTIVITY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="09ccf13c-25b5-4a98-a2b7-cde8d6baa5b7" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="03b25eee-ba6c-4f47-a852-e06bba8b02fe" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(503)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:INTERNAL_SERVER_ERROR" doc:id="628aa780-806a-40db-b32b-2163959ceea7" description="Test" expectedErrorType="HTTP:INTERNAL_SERVER_ERROR" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="f5f443f7-4073-4076-b090-fd1f4dbe2010" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:INTERNAL_SERVER_ERROR" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="b2f9f113-10da-4ef8-a308-cf8c19b482f0" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="34028587-61c3-433a-acfd-465a621e9443" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(500)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:METHOD_NOT_ALLOWED" doc:id="c33dc4e7-15b6-43ec-bbb8-d6bddcf1d918" description="Test" expectedErrorType="HTTP:METHOD_NOT_ALLOWED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="a10cea2f-b277-41b3-a54d-54913612b302" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="d50cd035-594b-4224-b907-7c4704cec25a" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="8d5aa273-2d1a-4551-a222-023413a20dc3" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(405)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:NOT_ACCEPTABLE" doc:id="211835b2-6dcf-4c3e-aaf4-3c15b31e333b" description="Test" expectedErrorType="HTTP:NOT_ACCEPTABLE" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="476f91fd-80d7-468e-b22d-7c132cbf1f29" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="56bf3e6c-e5b5-4627-b76e-1fef21ffe807" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="4b042299-0a15-44a4-b038-70be99b3bf93" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(406)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:NOT_FOUND" doc:id="c9dd5891-83f9-46a1-a8fd-c95259e19370" description="Test" expectedErrorType="HTTP:NOT_FOUND" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="9cb465bf-c22f-495a-85c3-b9dc4f80801d" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="ebc1ef16-33f6-46fc-9c25-46bfa251175c" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="ce1fe3f3-92ab-4393-9a1f-3571d53f6869" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(404)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:PARSING" doc:id="d91f3fd0-d4e0-42a7-bf77-68c48b34e640" description="Test" expectedErrorType="HTTP:PARSING" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="c1912929-3de7-462b-9329-a74b096220b5" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:PARSING" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="38e3ab16-731c-43ac-a7e7-2158e1725a41" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="dc4d6a31-c113-4922-83d3-52e47036a4dc" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(400)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:SECURITY" doc:id="0825856d-7f0e-4e7a-b76d-f5693871f8bc" description="Test" expectedErrorType="HTTP:SECURITY" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="303dc9a5-bf16-4d14-b00c-f4893aafd8e2" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:SECURITY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="73bf90b0-5ba8-48a0-aa37-1caa05dcfbdc" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="f5e92afd-9eae-40d4-ac17-61e115a431f1" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(401)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:TIMEOUT" doc:id="d4287e1d-0c16-43fe-8c0c-663b672b6631" description="Test" expectedErrorType="HTTP:TIMEOUT" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="26c529e9-147b-454b-afdd-44ecdbb126ce" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:TIMEOUT" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="f3139191-64c1-4192-be69-de66c680eed2" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="ccfddcf5-cb72-4ee4-adcf-e5be3f74fe2d" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(504)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:TOO_MANY_REQUESTS" doc:id="e5dc285e-fcc0-41f8-b582-59bddcb68868" description="Test" expectedErrorType="HTTP:TOO_MANY_REQUESTS" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="a5344db3-d683-4a39-94a1-0ef4064efe09" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:TOO_MANY_REQUESTS" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="ab3b9b4c-61e1-4e1f-b6de-78e65d6a7992" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="be1591b1-9339-424b-91a7-e54b1f94ada1" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(429)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="HTTP:UNSUPPORTED_MEDIA_TYPE" doc:id="67262b39-7afa-4368-924c-ae07071ff72c" description="Test" expectedErrorType="HTTP:UNSUPPORTED_MEDIA_TYPE" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="6c91f75a-415e-4604-83dc-cbcf84fa9775" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="f513f158-8d18-4059-ad79-c959cd68cb38" name="uhub-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="3d1968b4-7845-4182-969e-be5b0779c274" expression="#[vars.statusCode]" is="#[MunitTools::equalTo(415)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="STREAM_MAXIMUM_SIZE_EXCEEDED" doc:id="0800efef-a269-4f60-a00f-ec7c38fb7221" description="Test" expectedErrorType="STREAM_MAXIMUM_SIZE_EXCEEDED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="0dbabeca-60fa-4e90-b217-251a9d7b8cf2" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="STREAM_MAXIMUM_SIZE_EXCEEDED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="67b6783f-2a79-467b-a85c-6e280fa7ddc7" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="RETRY_EXHAUSTED" doc:id="d9d9ccd5-b796-4e63-a357-802575d07aa6" description="Test" expectedErrorType="RETRY_EXHAUSTED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="264adf79-7c8a-4c53-9c98-751d424b0c46" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="RETRY_EXHAUSTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="b2fad4fa-e4de-47db-a1d9-37c16592e747" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="REDELIVERY_EXHAUSTED" doc:id="4f23d492-48c5-4529-8f97-82c9b1d4e938" description="Test" expectedErrorType="REDELIVERY_EXHAUSTED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="1ae5a947-27f0-43fa-b550-bdd3c5ce6433" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="REDELIVERY_EXHAUSTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="ea3e882b-070c-4726-9eae-ee7f49a002eb" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="CONNECTIVITY" doc:id="13eed4db-695f-4826-987a-4c8352b4edb6" description="Test" expectedErrorType="CONNECTIVITY" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="89065cd5-b841-4b93-894f-ac47af40be2b" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="CONNECTIVITY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="d7898da4-dd2d-4a7d-80c4-1147eead4645" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="TRANSFORMATION" doc:id="c43da470-9d1c-4992-b8e7-240d0a499a5d" description="Test" expectedErrorType="TRANSFORMATION" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="e2cbadcd-7c46-458d-b8d1-e2a3578ac352" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="TRANSFORMATION" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="0c632581-3105-4b6e-acdd-025c7d23f3c3" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="TIMEOUT" doc:id="9f54c7c9-8738-47fe-8a86-2799b6d0d116" description="Test" expectedErrorType="TIMEOUT" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="f6250c4e-12fb-48a1-9cce-9c3dd4f47138" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="TIMEOUT" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="e9fa3974-e06d-40ad-82db-c3350e82b032" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="EXPRESSION" doc:id="aadade65-20bc-4829-91cc-7ffaa57cefdc" description="Test" expectedErrorType="EXPRESSION" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="bccba74f-b04c-4ed7-90af-13525f7dda30" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="EXPRESSION" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="52a50147-7374-4e76-9a27-abff12d5a45b" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="ROUTING" doc:id="e8c82eef-99ac-4a8e-accc-e40fbe18b48a" description="Test" expectedErrorType="ROUTING" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="c8e2876e-7e4c-44ca-8d81-ab705076007a" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="ROUTING" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="46b799bd-219f-4771-b65f-cfcd1a2fb8e4" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="ANY" doc:id="afc3710b-b7de-4f22-98f7-92e97a278a18" description="Test" expectedErrorType="ANY" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="1373ce8f-c2b8-401c-baa8-08737af5a92f" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="ANY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="cc6611e3-f213-4f69-8ff7-bb178897f8fe" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="SECURITY" doc:id="8d369956-f048-4958-b411-0b4ea9db3f8b" description="Test" expectedErrorType="SECURITY" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="d218bef2-a3dc-4b14-8187-b3a447a2540d" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="SECURITY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="07219397-c45b-427b-8868-d3eca3ad9892" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="APIKIT:UNSUPPORTED_MEDIA_TYPE" doc:id="1bb46d4a-1ca6-4124-bea6-ca6a7d50e270" description="Test" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="e4ed4cb1-18fe-424c-9a8d-0eaa8611a5c5" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="a2ac4b9a-dc45-4ff2-b429-ec3d1fb84621" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="HTTP:BAD_REQUEST" doc:id="3f1142ac-0e3f-4bfc-8ac7-87e6d1da3a59" description="Test" expectedErrorType="HTTP:BAD_REQUEST" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="0e683f95-9b79-47bf-9a28-0e27c0e71c9b" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="202f83e0-5790-4983-9416-7387b00a9060" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+	<munit:test name="HTTP:UNAUTHORIZED" doc:id="3a596d87-ab8f-47cc-abab-63bb1251c3e0" description="Test" expectedErrorType="HTTP:UNAUTHORIZED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="410d5cb1-acc7-474b-91b7-327475e5619a" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="7e0431ee-f2e5-4cf3-92e8-e4e3394e61fb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:UNAUTHORIZED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to uhub-main" doc:id="53338c80-7d41-4819-84b8-b1858e7647d5" name="uhub-main" />
+		</munit:execution>
+	</munit:test>
+
+
+</mule>

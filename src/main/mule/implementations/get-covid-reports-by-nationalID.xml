@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<flow name="get:\cases\(nationalID):uhub-config">
+        <ee:transform doc:name="set correlationId, nationalID">
+            <ee:variables>
+                <ee:set-variable variableName="nationalID"><![CDATA[attributes.uriParams.'nationalID']]></ee:set-variable>
+				<ee:set-variable variableName="correlationId" ><![CDATA[attributes.headers."x-correlation-id" default ""]]></ee:set-variable>
+            
+</ee:variables>
+        </ee:transform>
+        <logger level="INFO" doc:name="Start Logger" doc:id="7b133ad0-54ab-4d74-9b1f-9bdde3aa079d" message="transactionId: #[vars.transactionId], correlationId: #[vars.correlationId], nationalId: #[vars.nationalID], the flow to get covid cases by nationalId has  started"/>
+		<db:select doc:name="get-covid-case-by-nationalID" doc:id="66f55851-ff8d-41fb-be28-9fd1e49f9570" config-ref="Database_Config">
+			<db:sql ><![CDATA[SELECT * FROM data WHERE national_id =:nationalID]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	"nationalID": vars.nationalID
+}]]]></db:input-parameters>
+		</db:select>
+		<choice doc:name="Choice" doc:id="a338c56f-55b7-4219-b099-832bb7750636" >
+			<when expression="#[sizeOf(payload)&gt;0]">
+				<ee:transform doc:name="covid case report" doc:id="11d3fda4-d87b-4c71-8df0-6a92820839f2" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map ((a,i) -> {
+ 			"caseID": a.caseId,
+            "source": a.source,
+            "caseType": a.case_type,
+            "firstName": a.first_name,
+            "lastName": a.last_name,
+            "phone": a.phone,
+            "email": a.email,
+            "dateOfBirth": a.date_of_birth,
+            "nationalID": a.national_id,
+            "nationalIDType": a.national_id_type,
+            "address": {
+              "streetAddress": a.street_address,
+              "city": a.city,
+              "state": a.state,
+              "postal": a.postal,
+              "country": a.country
+            }
+          })]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<ee:transform doc:name="404" doc:id="cc804599-6806-418a-bd00-bebdbfd34bae" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+                "code": 404,
+                "message": "Not Found",
+                "description": "Resource not Found",
+                "dateTime": now() as String {format: "yyyy-MM-dd'T'HH:mm:ss'Z'"},
+                "transactionId": vars.transactionId
+              }]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="end Logger" doc:id="13384916-a12a-4be7-b736-82d7f8cd100a" message="the flow to get covid case by nationalId has completed"/>
+    
+</flow>
+	</mule>

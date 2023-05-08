@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	  <flow name="get:\reports:uhub-config">
+        <ee:transform doc:name="set state, correlationId" doc:id="e1044fa4-5be1-44bc-a270-63736c4510c8" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="correlationId" ><![CDATA[attributes.headers."x-correlation-id" default ""]]></ee:set-variable>
+				<ee:set-variable variableName="state" ><![CDATA[attributes.queryParams.state]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO" doc:name="Start Logger" doc:id="3884884c-607a-4098-8706-48455c248623" message="transactionId: #[vars.transactionId], correlationId: #[vars.correlationId], the flowto get covid reports  has started"/>
+		<until-successful maxRetries="2" doc:name="Until Successful" doc:id="4e49c9a8-09fa-4aee-a72f-b5d0b7615040" >
+			<db:select doc:name="get covid reports" doc:id="5a12f500-79f2-4ad5-bcc6-cec3e974a6f0" config-ref="Database_Config">
+			<db:sql><![CDATA[select * from data where state=:state]]></db:sql>
+			<db:input-parameters><![CDATA[#[{
+	state: vars.state
+}]]]></db:input-parameters>
+		</db:select>
+		</until-successful>
+		<choice doc:name="Choice" doc:id="c4a3fbfb-f425-4378-958f-bebe23c61e4f" >
+			<when expression="#[sizeOf(payload) &gt;0]">
+				<ee:transform doc:name="covid reports" doc:id="f533cec5-8f1c-4901-8bcb-37bd53f2b333" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+ payload map ((a,i) -> {
+ 			"caseID": a.caseId,
+            "source": a.source,
+            "caseType": a.case_type,
+            "firstName": a.first_name,
+            "lastName": a.last_name,
+            "phone": a.phone,
+            "email": a.email,
+            "dateOfBirth": a.date_of_birth,
+            "nationalID": a.national_id,
+            "nationalIDType": a.national_id_type,
+            "address": {
+              "streetAddress": a.street_address,
+              "city": a.city,
+              "state": a.state,
+              "postal": a.postal,
+              "country": a.country
+            }
+          })]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<ee:transform doc:name="404" doc:id="f72d92d0-ea49-4b59-be62-a03ca36bc496" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+                "code": 404,
+                "message": "Not Found",
+                "description": "Resource not Found",
+                "dateTime": now() as String {format: "yyyy-MM-dd'T'HH:mm:ss'Z'"},
+                "transactionId": vars.transactionId
+              }]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="End Logger" doc:id="bc2e5188-1f97-4567-96ef-dbd47db4d7e6" message="the flow to get covid reports completed"/>
+    </flow>
+	</mule>

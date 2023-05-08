@@ -1,0 +1,96 @@
+{
+  "runToken": "8cfe7f10-8b22-4811-9005-78d38512faa9",
+  "projectName": "uhub-saii",
+  "domainLocation": "",
+  "tags": [],
+  "testNames": [],
+  "suitePaths": [
+    "uhub-test-suite.xml",
+    "update-covid-Case-suite.xml",
+    "register-covid-Case-suite.xml",
+    "get-covid-reports-by-nationalID-suite.xml",
+    "get-covid-reports-by-nationalID-suite-Default.xml",
+    "get-covid-Reports-suite.xml",
+    "healthCheck-suite.xml",
+    "get-covid-Reports-suite-default.xml"
+  ],
+  "allSuitePaths": [
+    "uhub-test-suite.xml",
+    "update-covid-Case-suite.xml",
+    "register-covid-Case-suite.xml",
+    "get-covid-reports-by-nationalID-suite.xml",
+    "get-covid-reports-by-nationalID-suite-Default.xml",
+    "get-covid-Reports-suite.xml",
+    "healthCheck-suite.xml",
+    "get-covid-Reports-suite-default.xml"
+  ],
+  "skipAfterFailure": false,
+  "notifierConfigurations": [
+    {
+      "clazz": "org.mule.munit.remote.notifiers.ConsoleNotifier",
+      "parameters": [
+        {
+          "name": "runToken",
+          "type": "java.lang.String",
+          "value": "8cfe7f10-8b22-4811-9005-78d38512faa9"
+        }
+      ]
+    }
+  ],
+  "coverageConfiguration": {
+    "runCoverage": true,
+    "randomizeCoveragePort": true,
+    "suitePaths": [
+      "uhub-test-suite.xml",
+      "update-covid-Case-suite.xml",
+      "register-covid-Case-suite.xml",
+      "get-covid-reports-by-nationalID-suite.xml",
+      "get-covid-reports-by-nationalID-suite-Default.xml",
+      "get-covid-Reports-suite.xml",
+      "healthCheck-suite.xml",
+      "get-covid-Reports-suite-default.xml"
+    ],
+    "ignoredFiles": [],
+    "ignoredFlowNames": []
+  },
+  "containerConfiguration": {
+    "type": "EMBEDDED",
+    "value": {
+      "mavenConfiguration": {
+        "settingsXmlFilePath": "C:\\Users\\ADMIN\\.m2\\settings.xml",
+        "globalSettingsXmlFilePath": "C:\\apache-maven-3.8.6\\conf\\settings.xml",
+        "mavenRepositoryDirectoryPath": "C:\\Users\\ADMIN\\.m2\\repository",
+        "activeProfiles": [
+          "Mule"
+        ],
+        "offlineMode": false,
+        "forcePolicyUpdate": true,
+        "ignoreArtifactDescriptorRepositories": false,
+        "remoteRepositories": [
+          {
+            "id": "mulesoft-releases",
+            "url": "https://repository.mulesoft.org/releases/"
+          },
+          {
+            "id": "central",
+            "url": "https://repo.maven.apache.org/maven2"
+          }
+        ]
+      },
+      "serverPluginConfigurations": [
+        {
+          "groupId": "com.mulesoft.munit.plugins",
+          "artifactId": "munit-coverage-plugin",
+          "version": "2.3.9",
+          "type": "jar",
+          "classifier": "mule-server-plugin"
+        }
+      ],
+      "runtimeId": "4.4.0",
+      "product": "MULE_EE",
+      "munitWorkingDirectoryPath": "C:\\Users\\ADMIN\\AnypointStudio\\uhub\\uhub-munit\\target\\munitworkingdir-514908045417400",
+      "log4JConfigurationFilePath": "C:\\Users\\ADMIN\\AnypointStudio\\uhub\\uhub-munit\\target\\test-classes\\log4j2-test.xml",
+      "type": "EMBEDDED"
+    }
+  }
+}

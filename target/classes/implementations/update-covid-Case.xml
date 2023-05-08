@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	 <flow name="put:\cases:application\xml:uhub-config">
+        <ee:transform doc:name="set correlationId, inputPayload" doc:id="7af2e0af-81a0-4c18-a114-99cccde4de66" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="inputPayload" ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-variable>
+				<ee:set-variable variableName="correlationId" ><![CDATA[%dw 2.0
+output application/json
+---
+attributes.headers."x-correlation-id" default payload.covidCase.nationalID]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO" doc:name="Start Logger" doc:id="3ffcc599-1f05-44b1-980f-09a2737d01f1" message="correlationId:#[vars.correlationId], transactionId:#[vars.transactionId], the flow to update the covid cases has started: #[vars.inputPayload]"/>
+		<ee:transform doc:name="mapping" doc:id="4291a667-7c90-4c4b-8679-538fe77dfc80" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="dbPayload" ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	caseId: vars.inputPayload.covidCase.caseID,
+	source: vars.inputPayload.covidCase.source,
+	case_type: vars.inputPayload.covidCase.caseType,
+	first_name: vars.inputPayload.covidCase.firstName,
+	last_name: vars.inputPayload.covidCase.lastName,
+	phone: vars.inputPayload.covidCase.phone,
+	email: vars.inputPayload.covidCase.email,
+	date_of_birth: vars.inputPayload.covidCase.dateOfBirth,
+	national_id: vars.inputPayload.covidCase.nationalID,
+	national_id_type: vars.inputPayload.covidCase.nationalIDType,
+	street_address: vars.inputPayload.covidCase.address.streetAddress,
+	city: vars.inputPayload.covidCase.address.city,
+	state: vars.inputPayload.covidCase.address.state,
+	postal: vars.inputPayload.covidCase.address.postal,
+	country: vars.inputPayload.covidCase.address.country
+}]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<until-successful maxRetries="2" doc:name="Until Successful" doc:id="5bcf19a1-a295-4319-9209-fb237873385b" >
+			<db:update doc:name="Update covid case" doc:id="6862a88b-a362-4d20-b968-2f2f07e6d062" config-ref="Database_Config" autoGenerateKeys="true">
+				<db:sql ><![CDATA[update data set source=:source, case_type=:case_type, first_name=:first_name, last_name=:last_name, phone=:phone, email=:email, date_of_birth=:date_of_birth, national_id=:national_id, national_id_type=:national_id_type, street_address=:street_address, city=:city, state=:state, postal=:postal, country=:country where caseId=:caseId]]></db:sql>
+				<db:input-parameters ><![CDATA[#[vars.dbPayload]]]></db:input-parameters>
+				<db:auto-generated-keys-column-names >
+					<db:auto-generated-keys-column-name value="caseId" />
+				</db:auto-generated-keys-column-names>
+			</db:update>
+		</until-successful>
+		<ee:transform doc:name="caseId">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/xml
+---
+{
+  "case": {
+    caseID: vars.inputPayload.covidCase.caseID
+    }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+		<logger level="INFO" doc:name="End Logger" doc:id="909a8691-a48d-483a-842c-337d980b0b26" message="the flow to update covid case completed"/>
+    
+</flow>
+	</mule>
